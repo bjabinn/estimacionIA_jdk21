@@ -17,7 +17,7 @@ public class MedicionPorPrompt {
 
     private String aplicaIa;
     private String usadaIa;
-    private String calidadSalidaIa;
+    private int calidadSalidaIa;
     private int estimacionSinIa;
     private int estimacionConIa;
 

@@ -3,7 +3,6 @@ package es.viewnext.estimacion.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +28,6 @@ public class Estimacion {
 
     private String owner;
 
-    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MedicionPorPrompt> medicionPorPrompt;
 }
