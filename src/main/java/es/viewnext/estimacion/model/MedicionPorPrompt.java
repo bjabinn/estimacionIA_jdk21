@@ -1,5 +1,6 @@
 package es.viewnext.estimacion.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ public class MedicionPorPrompt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @OneToOne
@@ -17,7 +19,7 @@ public class MedicionPorPrompt {
 
     private String aplicaIa;
     private String usadaIa;
-    private String calidadSalidaIa;
+    private int calidadSalidaIa;
     private int estimacionSinIa;
     private int estimacionConIa;
 
