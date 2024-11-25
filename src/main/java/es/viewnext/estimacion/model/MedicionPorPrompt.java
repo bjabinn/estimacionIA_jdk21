@@ -5,13 +5,16 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Componente {
+public class MedicionPorPrompt {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tarea;
+    @OneToOne
+    @JoinColumn(name = "prompt_id")
+    private Prompt prompt;
+
     private String aplicaIa;
     private String usadaIa;
     private String calidadSalidaIa;
@@ -19,6 +22,6 @@ public class Componente {
     private int estimacionConIa;
 
     @ManyToOne
-    @JoinColumn(name = "proyecto_id")
-    private Proyecto proyecto;
+    @JoinColumn(name = "estimacion_id")
+    private Estimacion estimacion;
 }
