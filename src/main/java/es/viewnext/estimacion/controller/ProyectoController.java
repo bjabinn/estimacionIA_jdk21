@@ -1,7 +1,9 @@
 package es.viewnext.estimacion.controller;
 
 import es.viewnext.estimacion.dto.ProyectoDTO;
+import es.viewnext.estimacion.dto.SprintDTO;
 import es.viewnext.estimacion.mapper.ProyectoMapper;
+import es.viewnext.estimacion.mapper.SprintMapper;
 import es.viewnext.estimacion.model.Proyecto;
 import es.viewnext.estimacion.model.Sprint;
 import es.viewnext.estimacion.service.ProyectoService;
@@ -50,10 +52,11 @@ public class ProyectoController {
     }
 
     @GetMapping("/{id}/sprints")
-    public List<Sprint> getSprintsByProyectoId(@PathVariable Long id) {
+    public List<SprintDTO> getSprintsByProyectoId(@PathVariable Long id) {
         Optional<Proyecto> proyecto = proyectoService.findById(id);
         if (proyecto.isPresent()) {
-            return proyecto.get().getSprints();
+            List<Sprint> sprints = proyecto.get().getSprints();
+            return SprintMapper.INSTANCE.sprintsToSprintDTOs(sprints);
         } else {
             return new ArrayList<>();
         }

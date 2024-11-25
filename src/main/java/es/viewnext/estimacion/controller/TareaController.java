@@ -1,5 +1,7 @@
 package es.viewnext.estimacion.controller;
 
+import es.viewnext.estimacion.dto.TareaDTO;
+import es.viewnext.estimacion.mapper.TareaMapper;
 import es.viewnext.estimacion.model.Tarea;
 import es.viewnext.estimacion.service.TareaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,9 @@ public class TareaController {
     private TareaService tareaService;
 
     @GetMapping
-    public List<Tarea> getAllTareas() {
-        return tareaService.findAll();
+    public List<TareaDTO> getAllTareas() {
+        List<Tarea> tareas = tareaService.findAll();
+        return TareaMapper.INSTANCE.tareasToTareaDTOs(tareas);
     }
 
     @GetMapping("/{id}")
