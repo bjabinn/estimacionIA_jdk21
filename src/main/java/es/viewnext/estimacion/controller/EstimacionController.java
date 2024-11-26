@@ -1,14 +1,10 @@
 package es.viewnext.estimacion.controller;
 
 import es.viewnext.estimacion.dto.EstimacionDTO;
-import es.viewnext.estimacion.model.Estimacion;
-import es.viewnext.estimacion.model.Proyecto;
-import es.viewnext.estimacion.model.Sprint;
-import es.viewnext.estimacion.model.Tarea;
-import es.viewnext.estimacion.service.EstimacionService;
-import es.viewnext.estimacion.service.ProyectoService;
-import es.viewnext.estimacion.service.SprintService;
-import es.viewnext.estimacion.service.TareaService;
+import es.viewnext.estimacion.dto.MedicionPorPromptDTO;
+import es.viewnext.estimacion.mapper.EstimacionMapper;
+import es.viewnext.estimacion.model.*;
+import es.viewnext.estimacion.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +27,9 @@ public class EstimacionController {
     @Autowired
     private TareaService tareaService;
 
+    @Autowired
+    private MedicionPorPromptService medicionPorPromptService;
+
     @GetMapping
     public List<Estimacion> getAllEstimaciones() {
         return estimacionService.findAll();
@@ -43,19 +42,18 @@ public class EstimacionController {
 
     @PostMapping
     public Estimacion createEstimacion(@RequestBody EstimacionDTO estimacionDTO) {
-        Estimacion estimacion = new Estimacion();
-        estimacion.setHistoriaJira(estimacionDTO.getHistoriaJira());
-        estimacion.setOwner(estimacionDTO.getOwner());
+        Estimacion estimacion = EstimacionMapper.INSTANCE.estimacionDTOToEstimacion(estimacionDTO);
+        Estimacion savedEstimacion = estimacionService.save(estimacion);
 
-        Optional<Proyecto> proyecto = proyectoService.findById(estimacionDTO.getProyectoId());
-        Optional<Sprint> sprint = sprintService.findById(estimacionDTO.getSprintId());
-        Optional<Tarea> tarea = tareaService.findById(estimacionDTO.getTareaId());
+        if (estimacionDTO.getMedicionesPorPrompt() != null) {
+            for (MedicionPorPromptDTO medicionDTO : estimacionDTO.getMedicionesPorPrompt()) {
+                MedicionPorPrompt medicion = EstimacionMapper.INSTANCE.medicionPorPromptDTOToMedicionPorPrompt(medicionDTO);
+                medicion.setEstimacion(savedEstimacion);
+                medicionPorPromptService.save(medicion);
+            }
+        }
 
-        proyecto.ifPresent(estimacion::setProyecto);
-        sprint.ifPresent(estimacion::setSprint);
-        tarea.ifPresent(estimacion::setTarea);
-
-        return estimacionService.save(estimacion);
+        return savedEstimacion;
     }
 
     @PutMapping("/{id}")
