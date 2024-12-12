@@ -1,5 +1,8 @@
 package es.viewnext.estimacion.controller;
 
+import es.viewnext.estimacion.dto.PromptDTO;
+import es.viewnext.estimacion.mapper.PromptMapper;
+import es.viewnext.estimacion.mapper.SprintMapper;
 import es.viewnext.estimacion.model.Prompt;
 import es.viewnext.estimacion.service.PromptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +19,9 @@ public class PromptController {
     private PromptService promptService;
 
     @GetMapping
-    public List<Prompt> getAllPrompts() {
-        return promptService.findAll();
+    public List<PromptDTO> getAllPrompts() {
+        List<Prompt> prompts = promptService.findAll();
+        return PromptMapper.INSTANCE.promptsToPromptDTOs(prompts);
     }
 
     @GetMapping("/{id}")

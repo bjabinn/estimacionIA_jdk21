@@ -1,9 +1,12 @@
 package es.viewnext.estimacion.controller;
 
+import es.viewnext.estimacion.dto.PromptDTO;
 import es.viewnext.estimacion.dto.ProyectoDTO;
 import es.viewnext.estimacion.dto.SprintDTO;
+import es.viewnext.estimacion.mapper.PromptMapper;
 import es.viewnext.estimacion.mapper.ProyectoMapper;
 import es.viewnext.estimacion.mapper.SprintMapper;
+import es.viewnext.estimacion.model.Prompt;
 import es.viewnext.estimacion.model.Proyecto;
 import es.viewnext.estimacion.model.Sprint;
 import es.viewnext.estimacion.service.ProyectoService;
@@ -57,6 +60,17 @@ public class ProyectoController {
         if (proyecto.isPresent()) {
             List<Sprint> sprints = proyecto.get().getSprints();
             return SprintMapper.INSTANCE.sprintsToSprintDTOs(sprints);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    @GetMapping("/{id}/prompts")
+    public List<PromptDTO> getPromptsByProyectoId(@PathVariable Long id) {
+        Optional<Proyecto> proyecto = proyectoService.findById(id);
+        if (proyecto.isPresent()) {
+            List<Prompt> prompts = proyecto.get().getPrompts();
+            return PromptMapper.INSTANCE.promptsToPromptDTOs(prompts);
         } else {
             return new ArrayList<>();
         }
