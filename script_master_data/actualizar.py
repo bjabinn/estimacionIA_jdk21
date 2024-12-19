@@ -23,46 +23,29 @@ with open(ruta_salida, 'w', encoding="utf-8") as archivo_salida:
             wb = load_workbook(os.path.join(ruta_excel, archivo))
             ws = wb.active
             
-            # Asigna un nombre a las celdas
-            ws["B5"].name = "proyecto"
-            ws["C5"].name = "sprint"
-            ws["D5"].name = "cod.pbi"
-            ws["E5"].name = "descripcion"
-            ws["F5"].name = "owner"
-            
-            # Guarda los cambios en el archivo Excel
-            wb.save(os.path.join(ruta_excel, archivo))
-            
             # Lee el archivo Excel utilizando pandas
             df = pd.read_excel(os.path.join(ruta_excel, archivo), header=4)
             
             # Selecciona la columna que deseas
-            owner = df['owner']
-            proyecto = df["proyecto"]
-            sprint = df["sprint"]
-            historia_jira = df["cod"]
-            descripcion = df["descripcion"]
+            owner = df[ws["F5"].value].drop_duplicates()
+            proyecto = df[ws["B5"].value].drop_duplicates()
+            sprint = df[ws["C5"].value].drop_duplicates()
+            historia_jira = df[ws["D5"].value]
+            descripcion = df[ws["E5"].value]
 
             # Elimina filas vacías
             df = df.dropna(how='all')
-            
-            # Elimina filas duplicadas
-            df = df.drop_duplicates()
 
             # Inserta los datos en el archivo de salida .sql
-            for index, row in df.iterrows():
-                archivo_salida.write('''
-                    INSERT INTO estimacion (owner)
-                    VALUES ('{}' );
-                                     
-                    INSERT INTO proyecto (nombre)
-                    VALUES ('{}');
-                                     
-                    INSERT INTO sprint (nombre)
-                    VALUES ('{}');
-                                     
-                    INSERT INTO tarea (descripcion)
-                    VALUES ('{}');
-                                     
-                '''.format(owner[index], proyecto[index], sprint[index], historia_jira[index] + ' - ' + descripcion[index]))
-                archivo_salida.write('\n')
+            archivo_salida.write('''
+                INSERT INTO estimacion (owner) VALUES {};
+                INSERT INTO proyecto (nombre) VALUES {};
+                INSERT INTO sprint (nombre) VALUES {};
+            '''.format(tuple(owner), tuple(proyecto), tuple(sprint)))
+
+            # Genera un solo INSERT con todos los valores de historia_jira concatenados con descripcion
+            valores = [f"('{historia_jira.iloc[index]} - {descripcion.iloc[index]}')" for index, row in df.iterrows()]
+            archivo_salida.write('''
+                INSERT INTO tarea (descripcion) VALUES {};
+            '''.format(', '.join(valores)))
+            archivo_salida.write('\n')
