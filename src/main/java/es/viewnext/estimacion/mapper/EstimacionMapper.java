@@ -15,8 +15,7 @@ public interface EstimacionMapper {
     @Mapping(source = "proyectoId", target = "proyecto.id")
     @Mapping(source = "sprintId", target = "sprint.id")
     @Mapping(source = "tareaId", target = "tarea.id")
-    //@Mapping(source = "historiaJira", target = "historiaJira")
-    //@Mapping(source = "promptId", target = "prompt.id")
+    //@Mapping( source = "promptId", target = "prompt.id")
 
     Estimacion estimacionDTOToEstimacion(EstimacionDTO estimacionDTO);
 
