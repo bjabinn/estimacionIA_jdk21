@@ -28,10 +28,6 @@ public class Estimacion {
 
     private String owner;
 
-    @ManyToOne
-    @JoinColumn(name = "prompt_id")
-    private Prompt prompt;
-
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MedicionPorPrompt> medicionPorPrompt;
 }

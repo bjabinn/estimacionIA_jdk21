@@ -11,6 +11,5 @@ public class EstimacionDTO {
     private Long tareaId;
     private String owner;
     private String notas;
-    //private Long promptId;
     private List<MedicionPorPromptDTO> medicionesPorPrompt;
 }
