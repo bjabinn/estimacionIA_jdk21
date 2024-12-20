@@ -2,11 +2,11 @@ import pandas as pd
 
 df = pd.read_excel('ficherosExcelOrigen/DED-NAUA_Plantilla_Adopcion IA.xlsx', sheet_name='AdopcionIA', skiprows=5)
 
-with open('./sqlSalida/proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
-        open('./sqlSalida/sprint.sql', 'w', encoding='utf-8') as archivo_sprint,\
-        open('./sqlSalida/tarea.sql', 'w', encoding='utf-8') as archivo_tarea,\
-        open('./sqlSalida/estimacion.sql', 'w', encoding='utf-8') as archivo_estimacion,\
-        open('./sqlSalida/prompts.sql', 'w', encoding='utf-8') as archivo_prompt:
+with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
+        open('./sprint.sql', 'w', encoding='utf-8') as archivo_sprint,\
+        open('./tarea.sql', 'w', encoding='utf-8') as archivo_tarea,\
+        open('./estimacion.sql', 'w', encoding='utf-8') as archivo_estimacion,\
+        open('./prompts.sql', 'w', encoding='utf-8') as archivo_prompt:
 
     proyectos = {}
     sprints = {}
