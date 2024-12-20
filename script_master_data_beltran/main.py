@@ -12,8 +12,8 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
     sprints = {}
     tareas = []
     estimacion = {}
-    prompt = {}
-    medicion_prompt = []
+    prompts = {}
+    medicion_prompts = []
 
     for index, row in df.iterrows():
         equipo = row.iloc[1]
@@ -21,7 +21,7 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
         # tarea_codigo = row.iloc[3] tarea_descripcion = row.iloc[4] Concatenado y añadiendo "-"
         tarea = f"{row.iloc[3]} - {row.iloc[4]}"
         owner = row.iloc[5]
-        prompt_nombre = row.iloc[2]
+        prompt = row.iloc[44]
 
         # Crear proyecto si no existe
         if equipo not in proyectos:
@@ -43,6 +43,8 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
             archivo_estimacion.write(f"INSERT INTO estimacion (id, owner, proyecto_id, sprint_id, tarea_id) VALUES ({estimacion[estimacion_key]}, '{owner}', {proyectos[equipo]}, {sprints[sprint_key]}, {tarea_id};\n")
 
         # Crear prompt si no existe
-        # if prompt_nombre not in prompt:
-        #     prompt[prompt_nombre] = len(prompt) + 1
-        #     archivo_proyecto.write(f"INSERT INTO prompt (id, nombre) VALUES ({prompt[prompt_nombre]}, '{prompt_nombre}');\n")
+        if prompt not in prompts and not pd.isnull(prompt):
+            prompts[prompt] = len(prompts) + 1
+            archivo_prompt.write(f"INSERT INTO prompt (id, nombre) VALUES ({prompts[prompt]}, '{prompt}');\n")
+
+        
