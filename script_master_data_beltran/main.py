@@ -13,7 +13,6 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
     tareas = []
     estimacion = {}
     prompts = {}
-    medicion_prompts = []
 
     for index, row in df.iterrows():
         equipo = row.iloc[1]
@@ -21,6 +20,7 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
         # tarea_codigo = row.iloc[3] tarea_descripcion = row.iloc[4] Concatenado y añadiendo "-"
         tarea = f"{row.iloc[3]} - {row.iloc[4]}"
         owner = row.iloc[5]
+        notas = row.iloc[41]
         prompt = row.iloc[44]
 
         # Crear proyecto si no existe
@@ -37,14 +37,18 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
         tareas.append(tarea_id)
         archivo_tarea.write(f"INSERT INTO tarea (id, descripcion, sprint_id) VALUES ({tarea_id}, '{tarea}', {sprints[sprint_key]});\n")
         
-        estimacion_key = (sprint_key, tarea_id, owner)
+        # Crear prompt si no existe
+        if not pd.isnull(prompt):
+            prompt_key = (equipo, prompt)
+            if prompt_key not in prompts:
+                prompts[prompt_key] = len(prompts) + 1
+                archivo_prompt.write(f"INSERT INTO prompt (id, nombre, proyecto_id) VALUES ({prompts[prompt_key]}, '{prompt}', {proyectos[equipo]});\n")
+
+        else:
+        # Si prompt es nan, no creamos una fila en la tabla de estimacion
+            pass
+        
+        estimacion_key = (sprint_nombre, tarea, notas, owner)
         if estimacion_key not in estimacion:
             estimacion[estimacion_key] = len(estimacion) + 1
-            archivo_estimacion.write(f"INSERT INTO estimacion (id, owner, proyecto_id, sprint_id, tarea_id) VALUES ({estimacion[estimacion_key]}, '{owner}', {proyectos[equipo]}, {sprints[sprint_key]}, {tarea_id};\n")
-
-        # Crear prompt si no existe
-        if prompt not in prompts and not pd.isnull(prompt):
-            prompts[prompt] = len(prompts) + 1
-            archivo_prompt.write(f"INSERT INTO prompt (id, nombre) VALUES ({prompts[prompt]}, '{prompt}');\n")
-
-        
+            archivo_estimacion.write(f"INSERT INTO estimacion (id, owner, proyecto_id, sprint_id, tarea_id, notas) VALUES ({estimacion[estimacion_key]}, '{owner}', {proyectos[equipo]}, {sprints[sprint_key]}, {tarea_id}, {notas});\n")
