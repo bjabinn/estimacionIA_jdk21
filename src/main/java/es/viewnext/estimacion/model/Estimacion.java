@@ -28,6 +28,9 @@ public class Estimacion {
 
     private String owner;
 
+    @Column(columnDefinition = "text")
+    private String notas;
+
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MedicionPorPrompt> medicionPorPrompt;
 }

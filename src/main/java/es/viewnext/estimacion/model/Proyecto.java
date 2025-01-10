@@ -12,6 +12,7 @@ import java.util.List;
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     private String nombre;
