@@ -22,9 +22,9 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
             equipo = row.iloc[1]
             sprint_nombre = row.iloc[2]
             # tarea_codigo = row.iloc[3] tarea_descripcion = row.iloc[4] Concatenado y añadiendo "-"
-            tarea = f"{row.iloc[3]} - {row.iloc[4]}"
+            tarea = f"{row.iloc[3]} - {row.iloc[4]}".replace("'", "")
             owner = row.iloc[5]
-            notas = row.iloc[41]
+            notas = str(row.iloc[41]).replace("'", "")
             prompt = row.iloc[44]
 
             # Crear proyecto si no existe
@@ -46,7 +46,7 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
                 prompt_key = (equipo, prompt)
                 if prompt_key not in prompts:
                     prompts[prompt_key] = len(prompts) + 1
-                    archivo_prompt.write(f"INSERT INTO prompt (id, nombre, proyecto_id) VALUES ({prompts[prompt_key]}, '{prompt}', {proyectos[equipo]});\n")
+                    archivo_prompt.write(f"INSERT INTO prompt (id, prompt, proyecto_id) VALUES ({prompts[prompt_key]}, '{prompt}', {proyectos[equipo]});\n")
 
             estimacion_key = (sprint_nombre, tarea, notas, owner)
             if estimacion_key not in estimacion:

@@ -254,7 +254,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (253, 'SWSE_1793 - Crear d
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (254, 'NOMA_HU_1110 - Entrega 4.7. Revisar utilidades y JNDI', 32);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (255, 'NOMA_HU_1120 - [NOMA_MASIVAS] Mostrar en la ventana de resultado de subida de fichero tabla con resultado de las validaciones', 32);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (256, 'NOMA_HU_1078 -  [NOMA MASIVAS] Pantalla Inicio selección Unidades Funcionales para servicio XV24B102', 32);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (257, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo 'serie' no devuelve para su factura rectificativa valor Num_RCF_orginal', 32);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (257, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo serie no devuelve para su factura rectificativa valor Num_RCF_orginal', 32);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (258, 'BFAC_HU_1112 - Entrega y pruebas 3.6.1', 32);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (259, 'NOMA_HU_1079 - [NOMA MASIVAS] Primera validación PARTE 2', 32);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (260, 'GDOC_HU_1114 - Marcado documentos descargados en pantalla de búsqueda de documentos para asociar a expediente', 32);
@@ -874,7 +874,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (873, 'SWSE_1793 - Crear d
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (874, 'NOMA_HU_1110 - Entrega 4.7. Revisar utilidades y JNDI', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (875, 'NOMA_HU_1120 - [NOMA_MASIVAS] Mostrar en la ventana de resultado de subida de fichero tabla con resultado de las validaciones', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (876, 'NOMA_HU_1078 -  [NOMA MASIVAS] Pantalla Inicio selección Unidades Funcionales para servicio XV24B102', 68);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (877, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo 'serie' no devuelve para su factura rectificativa valor Num_RCF_orginal', 68);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (877, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo serie no devuelve para su factura rectificativa valor Num_RCF_orginal', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (878, 'BFAC_HU_1112 - Entrega y pruebas 3.6.1', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (879, 'NOMA_HU_1079 - [NOMA MASIVAS] Primera validación PARTE 2', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (880, 'GDOC_HU_1114 - Marcado documentos descargados en pantalla de búsqueda de documentos para asociar a expediente', 68);
@@ -1637,7 +1637,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1636, 'DENAUA-1205 - Incl
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1637, 'DENAUA-1223 - Adición de la información mostrada en los labels como variables de entorno en chart Java', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1638, 'DENAUA-1224 - Mostrar en logs las variables de entorno que contienen la información de los labels', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1639, 'DENAUA-1175 - Implementación Starter MQZ - Fase I', 116);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1640, 'DENAUA-1265 - Añadir adaptador Rest al microservicio 'certification' de APNA', 116);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1640, 'DENAUA-1265 - Añadir adaptador Rest al microservicio certification de APNA', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1641, 'DENAUA-1156 - Incluir nuevas métricas arenas (1/3) Nueva imagen añadiendo JavaPmapInspector', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1642, 'DENAUA-1157 - Incluir nuevas métricas arenas (2/3) - Crear script', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1643, 'DENAUA-1158 - Incluir nuevas métricas arenas (3/3) - Configurar tarea @Scheduled en framework', 116);
@@ -1665,7 +1665,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1664, 'SWSE_1793 - Crear 
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1665, 'NOMA_HU_1110 - Entrega 4.7. Revisar utilidades y JNDI', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1666, 'NOMA_HU_1120 - [NOMA_MASIVAS] Mostrar en la ventana de resultado de subida de fichero tabla con resultado de las validaciones', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1667, 'NOMA_HU_1078 -  [NOMA MASIVAS] Pantalla Inicio selección Unidades Funcionales para servicio XV24B102', 68);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1668, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo 'serie' no devuelve para su factura rectificativa valor Num_RCF_orginal', 68);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1668, 'BFAC_HU_1119 - [Servicio descargaExtendida]: Facturas originales sin informar campo serie no devuelve para su factura rectificativa valor Num_RCF_orginal', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1669, 'BFAC_HU_1112 - Entrega y pruebas 3.6.1', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1670, 'NOMA_HU_1079 - [NOMA MASIVAS] Primera validación PARTE 2', 68);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (1671, 'GDOC_HU_1114 - Marcado documentos descargados en pantalla de búsqueda de documentos para asociar a expediente', 68);
@@ -2597,7 +2597,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2596, 'DENAUA-1205 - Incl
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2597, 'DENAUA-1223 - Adición de la información mostrada en los labels como variables de entorno en chart Java', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2598, 'DENAUA-1224 - Mostrar en logs las variables de entorno que contienen la información de los labels', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2599, 'DENAUA-1175 - Implementación Starter MQZ - Fase I', 116);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2600, 'DENAUA-1265 - Añadir adaptador Rest al microservicio 'certification' de APNA', 116);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2600, 'DENAUA-1265 - Añadir adaptador Rest al microservicio certification de APNA', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2601, 'DENAUA-1156 - Incluir nuevas métricas arenas (1/3) Nueva imagen añadiendo JavaPmapInspector', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2602, 'DENAUA-1157 - Incluir nuevas métricas arenas (2/3) - Crear script', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2603, 'DENAUA-1158 - Incluir nuevas métricas arenas (3/3) - Configurar tarea @Scheduled en framework', 116);
@@ -2839,7 +2839,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2838, 'DENAUA-1205 - Incl
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2839, 'DENAUA-1223 - Adición de la información mostrada en los labels como variables de entorno en chart Java', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2840, 'DENAUA-1224 - Mostrar en logs las variables de entorno que contienen la información de los labels', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2841, 'DENAUA-1175 - Implementación Starter MQZ - Fase I', 116);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2842, 'DENAUA-1265 - Añadir adaptador Rest al microservicio 'certification' de APNA', 116);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2842, 'DENAUA-1265 - Añadir adaptador Rest al microservicio certification de APNA', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2843, 'DENAUA-1156 - Incluir nuevas métricas arenas (1/3) Nueva imagen añadiendo JavaPmapInspector', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2844, 'DENAUA-1157 - Incluir nuevas métricas arenas (2/3) - Crear script', 116);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (2845, 'DENAUA-1158 - Incluir nuevas métricas arenas (3/3) - Configurar tarea @Scheduled en framework', 116);
@@ -3324,7 +3324,7 @@ INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3323, 'DENAUA-1014-Testin
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3324, 'DENAUA-1030-Testing  - [Testing] Cobertura, diseños de casos en ALM y Pruebas de operaciones en caché con MongoDb', 137);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3325, 'DENAUA-1047 - [Testing] Pruebas RI S3', 138);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3326, 'DENAUA-1055 - [Testing] Cobertura, diseños de casos en ALM y Pruebas de operaciones en caché con MongoDb', 138);
-INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3327, 'PDAU-01 - Indicadores KPI's', 139);
+INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3327, 'PDAU-01 - Indicadores KPIs', 139);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3328, 'SDSS54884 - Grafito: componente BUTTON (2)', 139);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3329, 'DEDENXDE-183 - Cobertura pruebas módulo Gestión de entidades', 63);
 INSERT INTO tarea (id, descripcion, sprint_id) VALUES (3330, 'DEDENXDE-218 - Cobertura pruebas nueva funcionalidad Exportación Excel', 64);
