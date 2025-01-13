@@ -28,7 +28,14 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
                 tarea += f" - {tarea_descripcion}".replace("'", "")
                 
             owner = row.iloc[5]
+            if pd.isnull(owner) or owner == "nan" or owner == "":
+                owner = " "
+
+
             notas = str(row.iloc[41]).replace("'", "")
+            if pd.isnull(notas) or notas == "nan" or notas.strip() == "":
+                notas = " "
+
             prompt = row.iloc[44]
 
             # Crear proyecto si no existe y no está vacío
@@ -59,8 +66,9 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
                     prompts[prompt_key] = len(prompts) + 1
                     archivo_prompt.write(f"INSERT INTO prompt (id, prompt, proyecto_id) VALUES ({prompts[prompt_key]}, '{prompt}', {proyectos[equipo]});\n")
 
-            if tarea_id is not None and equipo in proyectos and sprint_key is not None:
+            if tarea_id is not None and equipo in proyectos and sprint_key is not None and notas is not None and notas != "":
                 estimacion_key = (sprint_nombre, tarea, notas, owner)
                 if estimacion_key not in estimacion:
                     estimacion[estimacion_key] = len(estimacion) + 1
                     archivo_estimacion.write(f"INSERT INTO estimacion (id, owner, proyecto_id, sprint_id, tarea_id, notas) VALUES ({estimacion[estimacion_key]}, '{owner}', {proyectos[equipo]}, {sprints[sprint_key]}, {tarea_id}, '{notas}');\n")
+
