@@ -17,7 +17,7 @@ with open('./proyecto.sql', 'w', encoding='utf-8') as archivo_proyecto,\
     prompts = {}
 
     for archivo in archivos_xlsx:
-        df = pd.read_excel(archivo, sheet_name='AdopcionIA', skiprows=5)
+        df = pd.read_excel(archivo, sheet_name='AdopcionIA', skiprows=4)
         for index, row in df.iterrows():
             equipo = row.iloc[1]
             sprint_nombre = row.iloc[2]
