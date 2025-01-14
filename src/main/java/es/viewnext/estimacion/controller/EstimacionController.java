@@ -3,6 +3,7 @@ package es.viewnext.estimacion.controller;
 import es.viewnext.estimacion.dto.EstimacionDTO;
 import es.viewnext.estimacion.dto.MedicionPorPromptDTO;
 import es.viewnext.estimacion.mapper.EstimacionMapper;
+import es.viewnext.estimacion.mapper.MedicionPorPromptMapper;
 import es.viewnext.estimacion.model.*;
 import es.viewnext.estimacion.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class EstimacionController {
 
         if (estimacionDTO.getMedicionesPorPrompt() != null) {
             for (MedicionPorPromptDTO medicionDTO : estimacionDTO.getMedicionesPorPrompt()) {
-                MedicionPorPrompt medicion = EstimacionMapper.INSTANCE.medicionPorPromptDTOToMedicionPorPrompt(medicionDTO);
+                MedicionPorPrompt medicion = MedicionPorPromptMapper.INSTANCE.medicionPorPromptDTOToMedicionPorPrompt(medicionDTO);
                 medicion.setEstimacion(savedEstimacion);
                 medicionPorPromptService.save(medicion);
             }
