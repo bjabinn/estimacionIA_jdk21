@@ -7,6 +7,7 @@ INSERT INTO proyecto (nombre) VALUES ('CIDIGA');
 INSERT INTO proyecto (nombre) VALUES ('CIGDOC');
 INSERT INTO proyecto (nombre) VALUES ('CIDCLO');
 INSERT INTO proyecto (nombre) VALUES ('EVsCaching');
+INSERT INTO proyecto (nombre) VALUES ('nan');
 INSERT INTO proyecto (nombre) VALUES ('FDAR');
 INSERT INTO proyecto (nombre) VALUES ('IBase');
 INSERT INTO proyecto (nombre) VALUES ('APNA');
