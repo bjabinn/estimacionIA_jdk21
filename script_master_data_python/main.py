@@ -1,7 +1,6 @@
 import pandas as pd
 import glob
 import warnings
-import os
 import re
 
 # Ignorar el aviso de la biblioteca openpyxl
@@ -92,16 +91,17 @@ for archivo in archivos_xlsx:
 
                    #Añadir medición por prompt
                     for i in range(6, 44, 5):
-                        if row.iloc[i] == 'S':
+                        if row.iloc[i] == 'S' and row.iloc[i + 1] == 'S': #si aplica_IA y usada_IA
                             calidad_ia = row.iloc[i + 2] if not pd.isnull(row.iloc[i + 2]) else 0
-                            esfuerzo_sin_ia = row.iloc[i + 3] if not pd.isnull(row.iloc[i + 3]) else 0
-                            esfuerzo_con_ia = row.iloc[i + 4] if not pd.isnull(row.iloc[i + 4]) else 0
-                            archivo_medicion.write(crear_sql_insert("medicionPorPrompt", {
+                            estimacion_sin_ia = row.iloc[i + 3] if not pd.isnull(row.iloc[i + 3]) else 0
+                            estimacion_con_ia = row.iloc[i + 4] if not pd.isnull(row.iloc[i + 4]) else 0
+                            archivo_medicion.write(crear_sql_insert("medicion_por_prompt", {
                                 "prompt_id": prompts[prompt_key],
                                 "estimacion_id": estimaciones[(proyectos[nombre_fichero], sprints[(nombre_fichero, sprint_nombre)], tareas[tarea])],
-                                "calidad_ia": calidad_ia,
-                                "esfuerzo_sin_ia": esfuerzo_sin_ia,
-                                "esfuerzo_con_ia": esfuerzo_con_ia
+                                "calidad_salida_ia": calidad_ia,
+                                "estimacion_sin_ia": estimacion_sin_ia,
+                                "estimacion_con_ia": estimacion_con_ia,
+                                "usada_ia": 1
                             }) + "\n")
             except Exception as e:
                 print(f"Error al leer archivo {archivo}: {e}")
