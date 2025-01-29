@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Entity
 @Data
 public class MedicionPorPrompt {
@@ -13,15 +15,14 @@ public class MedicionPorPrompt {
     @JsonIgnore
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "prompt_id")
     private Prompt prompt;
 
-    private String aplicaIa;
-    private String usadaIa;
-    private int calidadSalidaIa;
-    private int estimacionSinIa;
-    private int estimacionConIa;
+    private boolean usadaIa;
+    private BigDecimal calidadSalidaIa;
+    private BigDecimal estimacionSinIa;
+    private BigDecimal estimacionConIa;
 
     @ManyToOne
     @JoinColumn(name = "estimacion_id")
