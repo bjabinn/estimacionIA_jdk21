@@ -13,11 +13,10 @@ public class MedicionPorPrompt {
     @JsonIgnore
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "prompt_id")
     private Prompt prompt;
 
-    private String aplicaIa;
     private String usadaIa;
     private int calidadSalidaIa;
     private int estimacionSinIa;
