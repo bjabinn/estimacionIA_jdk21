@@ -1,0 +1,13 @@
+DELETE FROM public.medicion_por_prompt;
+DELETE FROM public.estimacion;
+DELETE FROM public.tarea;
+DELETE FROM public.prompt;
+DELETE FROM public.sprint;
+DELETE FROM public.proyecto;
+
+ALTER SEQUENCE public.estimacion_id_seq RESTART WITH 1;	
+ALTER SEQUENCE public.medicion_por_prompt_id_seq RESTART WITH 1;	
+ALTER SEQUENCE public.prompt_id_seq RESTART WITH 1;	
+ALTER SEQUENCE public.proyecto_id_seq RESTART WITH 1;	
+ALTER SEQUENCE public.sprint_id_seq RESTART WITH 1;	
+ALTER SEQUENCE public.tarea_id_seq RESTART WITH 1;	
