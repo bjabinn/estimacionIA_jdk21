@@ -1,0 +1,12 @@
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PGEN22', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('WF 21', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('ARQ22', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PDPR01', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('WF 22', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('ARQ23', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PDPR02', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PGEN23', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PGEN24', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('ARQ24', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('WF 23', 13);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('PDPR03', 13);

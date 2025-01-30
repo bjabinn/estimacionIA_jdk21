@@ -1,0 +1,13 @@
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPOLIFE 107', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPOLIFE 106', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DESACITA 100', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DESACITA S/P', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DESACEIN 115', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DESACEIN 116', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEDIGRAF 8', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEDIGRAF 9', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEDIGRAF 10', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPINTRA 108', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPINTRA S/P', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPINTE 102', 11);
+INSERT INTO sprint (nombre, proyecto_id) VALUES ('DEPINTE S/P', 11);

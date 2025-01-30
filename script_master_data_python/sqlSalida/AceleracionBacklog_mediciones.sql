@@ -1,0 +1,16 @@
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 8.0, 9.0, 1, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (0, 0, 0, 7, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (0, 0, 0, 9, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 3.0, 4.0, 26, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (7.0, 5.0, 8.0, 27, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 5.0, 7.0, 27, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (3.0, 0.8, 0.5, 36, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (4.0, 0.8, 0.5, 38, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (7.0, 5.0, 7.0, 44, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (0, 0, 0, 46, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (0, 0, 0, 49, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 6.0, 7.0, 49, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (7.0, 7.0, 8.0, 49, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 3.0, 4.0, 61, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (8.0, 2.0, 5.0, 61, 7);
+INSERT INTO medicion_por_prompt (calidad_salida_ia, estimacion_con_ia, estimacion_sin_ia, estimacion_id, prompt_id) VALUES (6.0, 2.0, 3.0, 64, 7);

@@ -1,7 +1,6 @@
 import pandas as pd
 import glob
 import warnings
-import os
 import re
 
 # Ignorar el aviso de la biblioteca openpyxl
@@ -9,7 +8,7 @@ warnings.filterwarnings("ignore")
 
 # Obtener lista de archivos .xlsx en el directorio
 archivos_xlsx = glob.glob('ficherosExcelOrigen/*.xlsx')
-carpeta_de_salida = 'sqlSalida';
+carpeta_de_salida = 'sqlSalida'
 
 # Diccionarios para almacenar los datos
 proyectos = {}
@@ -22,9 +21,17 @@ estimaciones = {}
 def crear_sql_insert(tabla, datos):
     sql = f"INSERT INTO {tabla} ("
     columnas = ", ".join(datos.keys())
-    valores = ", ".join(f"'{valor}'" for valor in datos.values())
+    valores = []
+    for valor in datos.values():
+        if isinstance(valor, str):
+            valores.append(f"'{valor}'")
+        else:
+            valores.append(str(valor))
+    valores = ", ".join(valores)
     sql += f"{columnas}) VALUES ({valores});"
     return sql
+
+
 
 # Código principal
 
@@ -72,10 +79,10 @@ for archivo in archivos_xlsx:
                     # Crear tarea si no existe y no está vacío
                     tarea = "" if pd.isnull(row.iloc[3]) else str(row.iloc[3]).replace("'", "").replace("\n", "").replace("\r", "")
                     tarea_descripcion = "" if pd.isnull(row.iloc[4]) else str(row.iloc[4]).replace("'", "").replace("\n", "").replace("\r", "")
-                    if not pd.isnull(tarea):
-                        if tarea not in tareas:
-                            tareas[tarea] = len(tareas)+1
-                            archivo_tarea.write(crear_sql_insert("tarea", {"descripcion": tarea, "sprint_id": sprints[(nombre_fichero, sprint_nombre)]}) + "\n")
+                    # if not pd.isnull(tarea):
+                    if tarea not in tareas:
+                        tareas[tarea] = len(tareas)+1
+                        archivo_tarea.write(crear_sql_insert("tarea", {"descripcion": (tarea + ' - ' + tarea_descripcion), "sprint_id": sprints[(nombre_fichero, sprint_nombre)]}) + "\n")
 
                     # añadir estimación
                     notas = str(row.iloc[41]).replace("'", "").replace("\n", "").replace("\r", "")[:100]
@@ -93,16 +100,25 @@ for archivo in archivos_xlsx:
                    #Añadir medición por prompt
                     for i in range(6, 44, 5):
                         if row.iloc[i] == 'S':
-                            calidad_ia = row.iloc[i + 2] if not pd.isnull(row.iloc[i + 2]) else 0
-                            esfuerzo_sin_ia = row.iloc[i + 3] if not pd.isnull(row.iloc[i + 3]) else 0
-                            esfuerzo_con_ia = row.iloc[i + 4] if not pd.isnull(row.iloc[i + 4]) else 0
-                            archivo_medicion.write(crear_sql_insert("medicionPorPrompt", {
-                                "prompt_id": prompts[prompt_key],
+                            calidad_salida_ia = row.iloc[i + 2] if not pd.isnull(row.iloc[i + 2]) else 0
+                            estimacion_sin_ia = row.iloc[i + 3] if not pd.isnull(row.iloc[i + 3]) else 0
+                            estimacion_con_ia = row.iloc[i + 4] if not pd.isnull(row.iloc[i + 4]) else 0
+                            
+                            # Convertir a números enteros
+                            if isinstance(estimacion_con_ia, str):
+                                estimacion_con_ia = int(estimacion_con_ia) if estimacion_con_ia.isdigit() else 0
+                            if isinstance(estimacion_sin_ia, str):
+                                estimacion_sin_ia = int(estimacion_sin_ia) if estimacion_sin_ia.isdigit() else 0
+                            
+                            archivo_medicion.write(crear_sql_insert("medicion_por_prompt", {
+                                "calidad_salida_ia": calidad_salida_ia,
+                                "estimacion_con_ia": estimacion_con_ia,
+                                "estimacion_sin_ia": estimacion_sin_ia,
                                 "estimacion_id": estimaciones[(proyectos[nombre_fichero], sprints[(nombre_fichero, sprint_nombre)], tareas[tarea])],
-                                "calidad_ia": calidad_ia,
-                                "esfuerzo_sin_ia": esfuerzo_sin_ia,
-                                "esfuerzo_con_ia": esfuerzo_con_ia
+                                "prompt_id": prompts[prompt_key]
                             }) + "\n")
+
+
             except Exception as e:
                 print(f"Error al leer archivo {archivo}: {e}")
         print(f"-----------------------FIN archivo {nombre_fichero}...")
