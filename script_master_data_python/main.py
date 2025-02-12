@@ -8,7 +8,7 @@ warnings.filterwarnings("ignore")
 
 # Obtener lista de archivos .xlsx en el directorio
 archivos_xlsx = glob.glob('ficherosExcelOrigen/*.xlsx')
-carpeta_de_salida = 'sqlSalida';
+carpeta_de_salida = 'sqlSalida'
 
 # Diccionarios para almacenar los datos
 proyectos = {}
@@ -34,7 +34,7 @@ def crear_sql_insert(tabla, datos):
 # Código principal
 
 for archivo in archivos_xlsx:
-    match = re.search(r'ficherosExcelOrigen\\DED-(.*?)_Adopcion IA_(.*?)', archivo)
+    match = re.search(r'ficherosExcelOrigen\\DED-(.*?)_Adopcion IA(.*?)', archivo)
     if match:
         nombre_fichero = match.group(1)
         print(f"-----------------------Procesando archivo {nombre_fichero}...")
