@@ -1,5 +1,6 @@
 package es.viewnext.estimacion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,7 +9,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
-public class MedicionPorPrompt {
+public class MedicionPorPrompt extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,7 @@ public class MedicionPorPrompt {
 
     @ManyToOne
     @JoinColumn(name = "prompt_id")
+    @JsonBackReference
     private Prompt prompt;
 
     private boolean usadaIa;
@@ -26,5 +28,6 @@ public class MedicionPorPrompt {
 
     @ManyToOne
     @JoinColumn(name = "estimacion_id")
+    @JsonBackReference
     private Estimacion estimacion;
 }

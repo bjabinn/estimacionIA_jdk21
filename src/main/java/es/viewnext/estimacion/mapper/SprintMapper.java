@@ -12,7 +12,6 @@ import java.util.List;
 public interface SprintMapper {
     SprintMapper INSTANCE = Mappers.getMapper(SprintMapper.class);
 
-    @Mapping(source = "proyecto.id", target = "proyectoId")
     SprintDTO sprintToSprintDTO(Sprint sprint);
 
     List<SprintDTO> sprintsToSprintDTOs(List<Sprint> sprints);

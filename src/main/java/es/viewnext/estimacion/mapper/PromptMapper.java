@@ -12,7 +12,7 @@ import java.util.List;
 public interface PromptMapper {
     PromptMapper INSTANCE = Mappers.getMapper(PromptMapper.class);
 
-    @Mapping(source = "proyecto.id", target = "proyectoId")
+    //@Mapping(source = "proyecto.id", target = "proyectoId")
     PromptDTO promptToPromptDTO(Prompt prompt);
 
     List<PromptDTO> promptsToPromptDTOs(List<Prompt> prompts);

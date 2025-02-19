@@ -1,14 +1,8 @@
 package es.viewnext.estimacion.controller;
 
-import es.viewnext.estimacion.dto.PromptDTO;
-import es.viewnext.estimacion.dto.ProyectoDTO;
-import es.viewnext.estimacion.dto.SprintDTO;
-import es.viewnext.estimacion.mapper.PromptMapper;
-import es.viewnext.estimacion.mapper.ProyectoMapper;
-import es.viewnext.estimacion.mapper.SprintMapper;
-import es.viewnext.estimacion.model.Prompt;
-import es.viewnext.estimacion.model.Proyecto;
-import es.viewnext.estimacion.model.Sprint;
+import es.viewnext.estimacion.dto.*;
+import es.viewnext.estimacion.mapper.*;
+import es.viewnext.estimacion.model.*;
 import es.viewnext.estimacion.service.ProyectoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,13 +20,18 @@ public class ProyectoController {
 
     @GetMapping
     public List<ProyectoDTO> getAllProyectos() {
-        List<Proyecto> proyectos = proyectoService.findAll();
-        return ProyectoMapper.INSTANCE.proyectosToProyectoDTOs(proyectos);
+        List<ProyectoDTO> listaProyectos = ProyectoMapper.INSTANCE.proyectosToProyectoDTOs(proyectoService.findAll());
+        return listaProyectos;
     }
 
     @GetMapping("/{id}")
-    public Optional<Proyecto> getProyectoById(@PathVariable Long id) {
-        return proyectoService.findById(id);
+    public ProyectoDTO getProyectoById(@PathVariable Long id) {
+        Optional<Proyecto> proyecto = proyectoService.findById(id);
+        if (proyecto.isPresent()){
+            ProyectoDTO proyectoDTO = ProyectoMapper.INSTANCE.proyectoToProyectoDTO(proyecto.get());
+            return proyectoDTO;
+        }
+        return null;
     }
 
     @PostMapping
@@ -75,4 +74,25 @@ public class ProyectoController {
             return new ArrayList<>();
         }
     }
+
+    @GetMapping("/{id}/mediciones")
+    public List<MedicionPorPromptDTO> getEstimacionesByProyectoId(@PathVariable Long id) {
+        Optional<Proyecto> proyecto = proyectoService.findById(id);
+        if (proyecto.isPresent()) {
+            List<MedicionPorPrompt> mediciones = new ArrayList<>();
+            for (Sprint sprint : proyecto.get().getSprints()) {
+                for (Tarea tarea : sprint.getTareas()) {
+                    Estimacion estimacion = tarea.getEstimacion();
+                    if (estimacion != null) {
+                        mediciones.addAll(estimacion.getMedicionPorPrompt());
+                    }
+                }
+            }
+            return MedicionPorPromptMapper.INSTANCE.medicionesPorPromptToMedicionesPorPromptDTP(mediciones);
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+
 }

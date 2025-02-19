@@ -12,5 +12,6 @@ public interface TareaMapper {
     TareaMapper INSTANCE = Mappers.getMapper(TareaMapper.class);
 
     TareaDTO tareaToTareaDTO(Tarea tarea);
+
     List<TareaDTO> tareasToTareaDTOs(List<Tarea> tareas);
 }

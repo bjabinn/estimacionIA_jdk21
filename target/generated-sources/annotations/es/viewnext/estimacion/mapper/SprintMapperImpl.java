@@ -1,7 +1,6 @@
 package es.viewnext.estimacion.mapper;
 
 import es.viewnext.estimacion.dto.SprintDTO;
-import es.viewnext.estimacion.model.Proyecto;
 import es.viewnext.estimacion.model.Sprint;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-01-29T09:00:39+0100",
+    date = "2025-02-20T00:10:24+0100",
     comments = "version: 1.5.3.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
 )
 public class SprintMapperImpl implements SprintMapper {
@@ -22,7 +21,6 @@ public class SprintMapperImpl implements SprintMapper {
 
         SprintDTO sprintDTO = new SprintDTO();
 
-        sprintDTO.setProyectoId( sprintProyectoId( sprint ) );
         sprintDTO.setId( sprint.getId() );
         sprintDTO.setNombre( sprint.getNombre() );
 
@@ -41,20 +39,5 @@ public class SprintMapperImpl implements SprintMapper {
         }
 
         return list;
-    }
-
-    private Long sprintProyectoId(Sprint sprint) {
-        if ( sprint == null ) {
-            return null;
-        }
-        Proyecto proyecto = sprint.getProyecto();
-        if ( proyecto == null ) {
-            return null;
-        }
-        Long id = proyecto.getId();
-        if ( id == null ) {
-            return null;
-        }
-        return id;
     }
 }

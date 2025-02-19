@@ -4,20 +4,30 @@ import es.viewnext.estimacion.dto.EstimacionDTO;
 import es.viewnext.estimacion.dto.MedicionPorPromptDTO;
 import es.viewnext.estimacion.model.Estimacion;
 import es.viewnext.estimacion.model.MedicionPorPrompt;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+import java.util.List;
+
+@Mapper(uses = MedicionPorPromptMapper.class)
 public interface EstimacionMapper {
     EstimacionMapper INSTANCE = Mappers.getMapper(EstimacionMapper.class);
 
-    @Mapping(source = "proyectoId", target = "proyecto.id")
-    @Mapping(source = "sprintId", target = "sprint.id")
-    @Mapping(source = "tareaId", target = "tarea.id")
+    //@Mapping(source = "tareaId", target = "tarea.id")
     Estimacion estimacionDTOToEstimacion(EstimacionDTO estimacionDTO);
 
     EstimacionDTO estimacionToEstimacionDTO(Estimacion estimacion);
 
+    List<EstimacionDTO> estimacionesToEstimacionesDTO(List<Estimacion> estimaciones);
 
+    @AfterMapping
+    default void afterMapping(@MappingTarget EstimacionDTO estimacionDTO, Estimacion estimacion) {
+        if (estimacion.getMedicionPorPrompt() != null) {
+            MedicionPorPromptMapper mapper = MedicionPorPromptMapper.INSTANCE;
+            estimacionDTO.setMedicionesPorPrompt(mapper.medicionesPorPromptToMedicionesPorPromptDTP(estimacion.getMedicionPorPrompt()));
+        }
+    }
 }

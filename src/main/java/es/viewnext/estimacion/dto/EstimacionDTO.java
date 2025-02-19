@@ -6,10 +6,9 @@ import java.util.List;
 
 @Data
 public class EstimacionDTO {
-    private Long proyectoId;
-    private Long sprintId;
-    private Long tareaId;
+    private Long id;
     private String owner;
     private String notas;
+
     private List<MedicionPorPromptDTO> medicionesPorPrompt;
 }

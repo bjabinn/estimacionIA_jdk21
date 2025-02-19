@@ -18,4 +18,7 @@ public class Tarea {
     @JoinColumn(name = "sprint_id", nullable = false)
     @JsonIgnore
     private Sprint sprint;
+
+    @OneToOne(mappedBy = "tarea", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Estimacion estimacion;
 }

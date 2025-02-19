@@ -6,6 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface MedicionPorPromptMapper {
     MedicionPorPromptMapper INSTANCE = Mappers.getMapper(MedicionPorPromptMapper.class);
@@ -13,5 +15,8 @@ public interface MedicionPorPromptMapper {
     @Mapping( source = "promptId", target = "prompt.id")
     MedicionPorPrompt medicionPorPromptDTOToMedicionPorPrompt(MedicionPorPromptDTO medicionPorPromptDTO);
 
+    @Mapping( source = "prompt.id", target = "promptId")
     MedicionPorPromptDTO medicionPorPromptToMedicionPorPromptDTO(MedicionPorPrompt medicionPorPrompt);
+
+    List<MedicionPorPromptDTO> medicionesPorPromptToMedicionesPorPromptDTP(List<MedicionPorPrompt> medicionPorPrompt);
 }

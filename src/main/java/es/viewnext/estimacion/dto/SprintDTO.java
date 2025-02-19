@@ -6,5 +6,4 @@ import lombok.Data;
 public class SprintDTO {
     private Long id;
     private String nombre;
-    private Long proyectoId;
 }
