@@ -17,7 +17,7 @@ public class Sprint {
 
     private String nombre;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "proyecto_id", nullable = false)
     @JsonIgnore
     private Proyecto proyecto;

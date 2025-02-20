@@ -17,7 +17,7 @@ public class Prompt {
 
     private String prompt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proyecto_id", nullable = false)
     private Proyecto proyecto;
 

@@ -1,5 +1,6 @@
 package es.viewnext.estimacion.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,9 +18,9 @@ public class Estimacion extends Auditable{
     @JsonIgnore
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "tarea_id")
-    @JsonIgnore
+    @JsonIgnore @JsonBackReference
     private Tarea tarea;
 
     private String owner;

@@ -14,7 +14,7 @@ public class Tarea {
 
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sprint_id", nullable = false)
     @JsonIgnore
     private Sprint sprint;

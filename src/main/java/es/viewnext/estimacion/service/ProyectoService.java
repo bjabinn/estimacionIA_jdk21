@@ -2,11 +2,13 @@ package es.viewnext.estimacion.service;
 
 import es.viewnext.estimacion.dto.EstimacionDTO;
 import es.viewnext.estimacion.dto.MedicionPorPromptDTO;
+import es.viewnext.estimacion.dto.MedicionesExcelDTO;
 import es.viewnext.estimacion.mapper.EstimacionMapper;
 import es.viewnext.estimacion.model.Estimacion;
 import es.viewnext.estimacion.model.MedicionPorPrompt;
 import es.viewnext.estimacion.model.Proyecto;
 import es.viewnext.estimacion.repository.EstimacionRepository;
+import es.viewnext.estimacion.repository.MedicionesExcelRepository;
 import es.viewnext.estimacion.repository.ProyectoRepository;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -31,6 +33,9 @@ public class ProyectoService {
     @Autowired
     private EstimacionRepository estimacionRepository;
 
+    @Autowired
+    private MedicionesExcelRepository medicionesExcelRepository;
+
     public List<Proyecto> findAll() {
         return proyectoRepository.findAll();
     }
@@ -49,8 +54,7 @@ public class ProyectoService {
 
 
     public ByteArrayInputStream exportAllProyectosToExcel() throws IOException {
-        List<Estimacion> estimaciones = estimacionRepository.findAll();
-        List<EstimacionDTO> estimacionesDTO = EstimacionMapper.INSTANCE.estimacionesToEstimacionesDTO(estimaciones);
+         List<MedicionesExcelDTO> mediciones = medicionesExcelRepository.findAllMedicionesForExcel();
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Proyectos");
 
@@ -65,21 +69,21 @@ public class ProyectoService {
 
         // Y ahora por las mediciones
         int rowNum = 1;
-        for (EstimacionDTO estimacionDTO : estimacionesDTO) {
-            for (MedicionPorPromptDTO medicion : estimacionDTO.getMedicionesPorPrompt()) {
-                Row row = sheet.createRow(rowNum++);
-                //row.createCell(0).setCellValue(medicion.getFechaUltimaModificacion().toString());
-                //row.createCell(1).setCellValue(estimacionDTO.getTarea().getProyecto().getNombre());
-                //row.createCell(2).setCellValue(estimacionDTO.getTarea().getSprint().getNombre());
-                //row.createCell(3).setCellValue(estimacionDTO.getTarea().getNombre());
-                row.createCell(4).setCellValue(estimacionDTO.getOwner());
-                row.createCell(5).setCellValue(medicion.isUsadaIa() ? "Si" : "No");
-                //row.createCell(6).setCellValue(medicion.getPrompt().getDescripcion());
-                row.createCell(7).setCellValue(medicion.getCalidadSalidaIa().toString());
-                row.createCell(8).setCellValue(medicion.getEstimacionConIa().toString());
-                row.createCell(9).setCellValue(medicion.getEstimacionSinIa().toString());
-                row.createCell(10).setCellValue(estimacionDTO.getNotas());
-            }
+        for (MedicionesExcelDTO medicion : mediciones) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(
+                medicion.getFechaCreacion() != null ? medicion.getFechaCreacion().toString() : ""
+            );
+            row.createCell(1).setCellValue(medicion.getNombreProyecto());
+            row.createCell(2).setCellValue(medicion.getNombreSprint());
+            row.createCell(3).setCellValue(medicion.getDescripcionTarea());
+            row.createCell(4).setCellValue(medicion.getOwner());
+            row.createCell(5).setCellValue(medicion.isUsadaIa() ? "Si" : "No");
+            row.createCell(6).setCellValue(medicion.getPrompt());
+            row.createCell(7).setCellValue(medicion.getCalidadSalidaIa().toString());
+            row.createCell(8).setCellValue(medicion.getEstimacionConIa().toString());
+            row.createCell(9).setCellValue(medicion.getEstimacionSinIa().toString());
+            row.createCell(10).setCellValue(medicion.getNotas());
         }
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();

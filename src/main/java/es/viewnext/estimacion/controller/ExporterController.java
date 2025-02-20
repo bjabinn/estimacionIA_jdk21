@@ -21,7 +21,7 @@ public class ExporterController {
     @Autowired
     private ProyectoService proyectoService;
 
-    @GetMapping("/proyectos")
+    @GetMapping("/mediciones")
     public ResponseEntity<byte[]> exportAllProyectosToExcel() throws IOException {
         ByteArrayInputStream in = proyectoService.exportAllProyectosToExcel();
         HttpHeaders headers = new HttpHeaders();

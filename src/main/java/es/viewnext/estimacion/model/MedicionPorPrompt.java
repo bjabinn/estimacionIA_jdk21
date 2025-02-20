@@ -11,14 +11,11 @@ import java.math.BigDecimal;
 @Data
 public class MedicionPorPrompt extends Auditable{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @JsonIgnore
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "prompt_id")
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prompt_id") @JsonIgnore @JsonBackReference
     private Prompt prompt;
 
     private boolean usadaIa;
@@ -26,8 +23,7 @@ public class MedicionPorPrompt extends Auditable{
     private BigDecimal estimacionSinIa;
     private BigDecimal estimacionConIa;
 
-    @ManyToOne
-    @JoinColumn(name = "estimacion_id")
-    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estimacion_id") @JsonIgnore @JsonBackReference
     private Estimacion estimacion;
 }
