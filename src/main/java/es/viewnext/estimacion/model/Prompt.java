@@ -9,19 +9,19 @@ import java.util.List;
 
 @Entity
 @Data
-public class Prompt {
+public class Prompt extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     private String prompt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "proyecto_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "proyecto_id")
     private Proyecto proyecto;
 
-    @OneToMany(mappedBy = "prompt", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "prompt_id")
     private List<MedicionPorPrompt> medicionPorPrompts = new ArrayList<>();
 
 

@@ -75,24 +75,33 @@ public class ProyectoController {
         }
     }
 
-    @GetMapping("/{id}/mediciones")
-    public List<MedicionPorPromptDTO> getEstimacionesByProyectoId(@PathVariable Long id) {
+    @GetMapping("/{id}/estimaciones")
+    public List<EstimacionDTO> getEstimacionesByProyectoId(@PathVariable Long id) {
         Optional<Proyecto> proyecto = proyectoService.findById(id);
         if (proyecto.isPresent()) {
-            List<MedicionPorPrompt> mediciones = new ArrayList<>();
+            Proyecto proyectoEntity = proyecto.get();
+            List<EstimacionDTO> estimaciones = new ArrayList<>();
+
             for (Sprint sprint : proyecto.get().getSprints()) {
                 for (Tarea tarea : sprint.getTareas()) {
                     Estimacion estimacion = tarea.getEstimacion();
-                    if (estimacion != null) {
-                        mediciones.addAll(estimacion.getMedicionPorPrompt());
-                    }
+
+                    EstimacionDTO estimacionDTO = EstimacionMapper.INSTANCE.estimacionToEstimacionDTO(estimacion);
+                    estimacionDTO.setProyectoId(proyectoEntity.getId());
+                    estimacionDTO.setProyecto(proyectoEntity.getNombre());
+                    estimacionDTO.setSprintId(sprint.getId());
+                    estimacionDTO.setSprint(sprint.getNombre());
+
+                    estimaciones.add(estimacionDTO);
                 }
             }
-            return MedicionPorPromptMapper.INSTANCE.medicionesPorPromptToMedicionesPorPromptDTP(mediciones);
+            return estimaciones;
         } else {
             return new ArrayList<>();
         }
     }
+
+
 
 
 }

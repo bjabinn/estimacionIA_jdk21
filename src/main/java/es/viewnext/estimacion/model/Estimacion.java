@@ -20,7 +20,6 @@ public class Estimacion extends Auditable{
 
     @OneToOne
     @JoinColumn(name = "tarea_id")
-    @JsonIgnore @JsonBackReference
     private Tarea tarea;
 
     private String owner;
@@ -28,6 +27,7 @@ public class Estimacion extends Auditable{
     @Column(columnDefinition = "text")
     private String notas;
 
-    @OneToMany(mappedBy = "estimacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "estimacion_id")
     private List<MedicionPorPrompt> medicionPorPrompt;
 }

@@ -55,3 +55,4 @@ bin/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+/target/

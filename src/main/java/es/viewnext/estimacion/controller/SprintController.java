@@ -46,7 +46,7 @@ public class SprintController {
     public Sprint createSprint(@RequestBody Sprint sprint, @RequestParam Long proyectoId) {
         Optional<Proyecto> proyecto = proyectoService.findById(proyectoId);
         if (proyecto.isPresent()) {
-            sprint.setProyecto(proyecto.get());
+            //sprint.setProyecto(proyecto.get());
             return sprintService.save(sprint);
         } else {
             throw new RuntimeException("Proyecto no encontrado");

@@ -9,10 +9,9 @@ import java.util.List;
 
 @Entity
 @Data
-public class Proyecto {
+public class Proyecto extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     private String nombre;

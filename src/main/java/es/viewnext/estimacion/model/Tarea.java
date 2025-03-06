@@ -1,24 +1,21 @@
 package es.viewnext.estimacion.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-public class Tarea {
+public class Tarea extends Auditable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Long id;
 
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sprint_id", nullable = false)
-    @JsonIgnore
-    private Sprint sprint;
-
     @OneToOne(mappedBy = "tarea", cascade = CascadeType.ALL, orphanRemoval = true)
     private Estimacion estimacion;
+
+    @ManyToOne
+    @JoinColumn(name = "sprint_id")
+    private Sprint sprint;
 }

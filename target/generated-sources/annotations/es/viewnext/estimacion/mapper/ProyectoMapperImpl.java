@@ -8,8 +8,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-20T00:10:24+0100",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 23.0.1 (Oracle Corporation)"
+    date = "2025-03-05T09:09:55+0100",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 23.0.1 (IBM Corporation)"
 )
 public class ProyectoMapperImpl implements ProyectoMapper {
 

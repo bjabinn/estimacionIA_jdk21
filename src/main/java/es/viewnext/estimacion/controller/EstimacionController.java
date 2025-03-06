@@ -49,7 +49,7 @@ public class EstimacionController {
         if (estimacionDTO.getMedicionesPorPrompt() != null) {
             for (MedicionPorPromptDTO medicionDTO : estimacionDTO.getMedicionesPorPrompt()) {
                 MedicionPorPrompt medicion = MedicionPorPromptMapper.INSTANCE.medicionPorPromptDTOToMedicionPorPrompt(medicionDTO);
-                medicion.setEstimacion(savedEstimacion);
+                //medicion.setEstimacion(savedEstimacion);
                 medicionPorPromptService.save(medicion);
             }
         }

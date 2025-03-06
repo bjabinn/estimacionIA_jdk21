@@ -13,4 +13,5 @@ public class MedicionPorPromptDTO {
     private BigDecimal estimacionConIa;
 
     private Long promptId;
+    private String promptNombre;
 }

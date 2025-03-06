@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Sprint {
+public class Sprint extends Auditable{
     @Id
     @GeneratedValue (strategy =GenerationType.IDENTITY)
     @JsonIgnore
@@ -17,12 +17,12 @@ public class Sprint {
 
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name = "proyecto_id", nullable = false)
-    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "proyecto_id")
     private Proyecto proyecto;
 
-    @OneToMany (mappedBy = "sprint", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Tarea> tareas = new ArrayList<>();
+    @OneToMany (cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "sprint_id")
+    private List<Tarea> tareas;
 
 }
